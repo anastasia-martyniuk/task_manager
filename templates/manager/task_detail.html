@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ task.name }}</h2>
+
+  <br>
+  <p>"{{ task.description }}"</p>
+  <br>
+
+  <p><strong>Deadline:</strong> {{ task.deadline }}</p>
+  <p><strong>Priority:</strong> {{ task.priority }}</p>
+  <p><strong>Is completed:</strong> {{ task.is_completed }}</p>
+  <p><strong>Task type:</strong><a href="#"> {{ task.task_type.name }}</a></p>
+
+  <br>
+  <h5>Workers</h5>
+  {% for worker in task.assignees.all %}
+    <hr>
+    <p><strong>Full name: </strong><a href="#">{{ worker.first_name }} {{ worker.last_name }}</a></p>
+  {% empty %}
+    <p>Workers for this task haven`t yet been assigned.</p>
+  {% endfor %}
+
+{#  <p><strong>Assignees:</strong><a href="#"> {{ task.assignees }}</a></p>#}
+
+{% endblock %}

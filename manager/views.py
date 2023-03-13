@@ -37,3 +37,13 @@ class WorkerListView(generic.ListView):
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.all().select_related("task_type")
+
+
+def task_detail_view(request, pk):
+    task = Task.objects.get(id=pk)
+
+    context = {
+        "task": task
+    }
+
+    return render(request, "manager/task_detail.html", context)
