@@ -27,4 +27,12 @@ class PositionListView(generic.ListView):
 class TaskTypeListView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
-    context_object_name = "task-type-list"
+    context_object_name = "task_type_list"
+
+
+class WorkerListView(generic.ListView):
+    model = Worker
+
+
+class TaskListView(generic.ListView):
+    model = Task

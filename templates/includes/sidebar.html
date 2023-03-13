@@ -1,7 +1,7 @@
 <ul class="sidebar-nav">
   <li><a href="{% url 'manager:index' %}">Home</a></li>
   <li><a href="{% url 'manager:position-list' %}">All positions</a></li>
-  <li><a href="#">All workers</a></li>
-  <li><a href="#">All task types</a></li>
-  <li><a href="#">All tasks</a></li>
+  <li><a href="{% url 'manager:worker-list' %}">All workers</a></li>
+  <li><a href="{% url 'manager:task-type-list' %}">All task types</a></li>
+  <li><a href="{% url 'manager:task-list' %}">All tasks</a></li>
 </ul>
