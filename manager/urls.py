@@ -1,6 +1,6 @@
 from django.urls import path
 
-from manager.views import index, PositionListView, TaskTypeListView, WorkerListView, TaskListView, task_detail_view
+from manager.views import index, PositionListView, TaskTypeListView, WorkerListView, TaskListView, TaskDetailView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -10,7 +10,7 @@ urlpatterns = [
     path("workers/", WorkerListView.as_view(), name="worker-list"),
     path("tasks/", TaskListView.as_view(), name="task-list"),
 
-    path("tasks/<int:pk>", task_detail_view, name="task-detail"),
+    path("tasks/<int:pk>", TaskDetailView.as_view(), name="task-detail"),
 ]
 
 app_name = "manager"

@@ -22,28 +22,26 @@ def index(request):
 
 class PositionListView(generic.ListView):
     model = Position
+    paginate_by = 10
 
 
 class TaskTypeListView(generic.ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
     context_object_name = "task_type_list"
+    paginate_by = 10
 
 
 class WorkerListView(generic.ListView):
     model = Worker
+    paginate_by = 10
 
 
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.all().select_related("task_type")
+    paginate_by = 10
 
 
-def task_detail_view(request, pk):
-    task = Task.objects.get(id=pk)
-
-    context = {
-        "task": task
-    }
-
-    return render(request, "manager/task_detail.html", context)
+class TaskDetailView(generic.DetailView):
+    model = Task
