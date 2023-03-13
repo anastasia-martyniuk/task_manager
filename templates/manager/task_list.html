@@ -5,7 +5,7 @@
   {% if task_list %}
     <ul>
       {% for task in task_list %}
-        <li>{{ task.name }}</li>
+        <li>{{ task.name }}: priority - {{ task.priority }}, task type - {{ task.task_type.name }}, assignees - </li>
       {% endfor %}
     </ul>
 

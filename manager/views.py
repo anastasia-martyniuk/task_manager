@@ -36,3 +36,4 @@ class WorkerListView(generic.ListView):
 
 class TaskListView(generic.ListView):
     model = Task
+    queryset = Task.objects.all().select_related("task_type")
