@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Position List</h1>
+  {% if position_list %}
+    <ul>
+      {% for position in position_list %}
+        <li>{{ position }}</li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There`re no positions in this company!</p>
+  {% endif %}
+{% endblock %}

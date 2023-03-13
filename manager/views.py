@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views import generic
 
 from manager.models import Position, Worker, TaskType, Task
 
@@ -17,3 +18,13 @@ def index(request):
     }
 
     return render(request, "manager/index.html", context=context)
+
+
+class PositionListView(generic.ListView):
+    model = Position
+
+
+class TaskTypeListView(generic.ListView):
+    model = TaskType
+    template_name = "manager/task_type_list.html"
+    context_object_name = "task-type-list"
