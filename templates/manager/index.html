@@ -9,4 +9,14 @@
           <li>num_tasks_type: {{ num_tasks_type }}</li>
           <li>num_tasks: {{ num_tasks }}</li>
         </ul>
+
+  <hr>
+  <p>
+    You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.
+    {% if last_visit %}
+      Last visited on {{ last_visit }}
+      {% else %}
+      We are pleased to welcome a new visitor:)
+    {% endif %}
+  </p>
 {% endblock %}

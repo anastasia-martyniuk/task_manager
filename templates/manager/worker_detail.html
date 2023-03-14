@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ worker.first_name }} {{ worker.last_name }}</h2>
+  <hr>
+
+  <p><strong>Username: </strong>{{ worker.username }}</p>
+  <p><strong>Position: </strong><a href="{% url 'manager:position-detail' pk=worker.position.id %}">{{ worker.position.name.lower }}</a></p>
+  <p><strong>Email: </strong> {{ worker.email }}</p>
+  <p><strong>Date joined: </strong>{{ worker.date_joined }}</p>
+
+  <br>
+  <h5>Tasks</h5>
+  {% for task in worker.tasks.all %}
+    <hr>
+    <p><strong>Task: </strong><a href="{% url 'manager:task-detail' pk=task.id %}">{{ task.name }}</a></p>
+  {% empty %}
+    <p>This worker has no tasks yet.</p>
+  {% endfor %}
+{% endblock %}

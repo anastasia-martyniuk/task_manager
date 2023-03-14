@@ -2,10 +2,14 @@
 
 {% block content %}
   <h1>Position List</h1>
+  <hr>
+
   {% if position_list %}
     <ul>
       {% for position in position_list %}
-        <li>{{ position }}</li>
+        <li>
+          <a href="{% url 'manager:position-detail' pk=position.id %}">{{ position.name }}</a> ({{ position.workers.count }} team members)
+        </li>
       {% endfor %}
     </ul>
 

@@ -2,10 +2,14 @@
 
 {% block content %}
   <h1>Worker List</h1>
+  <hr>
   {% if worker_list %}
     <ul>
       {% for worker in worker_list %}
-        <li><a href="#">{{ worker.first_name }} {{ worker.last_name }}</a></li>
+        <li>
+          <a href="{% url 'manager:worker-detail' pk=worker.id %}">{{ worker.first_name }} {{ worker.last_name }}</a>
+          <p>position: <a href="#">{{ worker.position.name.lower }}</a></p>
+        </li>
       {% endfor %}
     </ul>
 

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ position.name }} team:</h2>
+  <hr>
+
+  <ul>
+  {% for worker in position.workers.all %}
+    <li>
+      <a href="{% url 'manager:worker-detail' pk=worker.id %}">{{ worker.first_name }} {{ worker.last_name }}</a>
+      <p>started working: {{ worker.date_joined }}</p>
+    </li>
+  {% empty %}
+    <p>This team has no members yet, maybe you can be the first :)</p>
+  {% endfor %}
+  </ul>
+{% endblock %}
