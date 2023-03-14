@@ -1,9 +1,12 @@
 from datetime import datetime
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import generic
 
+from manager.forms import TaskTypeForm
 from manager.models import Position, Worker, TaskType, Task
 
 
@@ -76,3 +79,36 @@ class TaskTypeDetailView(LoginRequiredMixin, generic.DetailView):
     model = TaskType
     template_name = "manager/task_type_detail.html"
     context_object_name = "task_type"
+
+
+def task_type_create_view(request):
+    # if request.method == "GET":
+    #     context = {
+    #         "form": TaskTypeForm()
+    #     }
+    #     return render(request, "manager/task_type_form.html", context)
+    #
+    # elif request.method == "POST":
+    #     form = TaskTypeForm(request.POST)
+    #
+    #     if form.is_valid:
+    #         TaskType.objects.create(**form.cleaned_data)
+    #         return HttpResponseRedirect(reverse("manager:task-type-list"))
+    #
+    #     context = {
+    #         "error": "Please, provide name"
+    #     }
+    #
+    #     return render(request, "manager/task_type_form.html", context)
+
+    context = {}
+    form = TaskTypeForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        # TaskType.objects.create(**form.cleaned_data)
+        return HttpResponseRedirect(reverse("manager:task-type-list"))
+
+    context["form"] = form
+    return render(request, "manager/task_type_form.html", context)
+
